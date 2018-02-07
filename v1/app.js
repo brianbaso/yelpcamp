@@ -6,9 +6,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
 var campgrounds = [
-	{name: 'Salmon Creek', image: 'https://cdn.pixabay.com/photo/2014/05/03/00/42/vw-camper-336606__480.jpg'},
-	{name: 'Granite Hill', image: 'https://cdn.pixabay.com/photo/2015/07/10/17/24/night-839807__480.jpg'},
-	{name: 'Mountain Goat\'s Rest', image: 'https://cdn.pixabay.com/photo/2018/02/02/13/37/nature-3125452__480.jpg'}
+	{name: 'Salmon Creek', image: 'https://cascadiatents.com/wp-content/uploads/2016/08/CVT-Mt.-Rainier-EV-TN.jpg'},
+	{name: 'Granite Hill', image: 'https://cascadiatents.com/wp-content/uploads/2016/08/CVT-Mt.-Rainier-EV-TN.jpg'},
+	{name: 'Mountain Goat\'s Rest', image: 'https://cascadiatents.com/wp-content/uploads/2016/08/CVT-Mt.-Rainier-EV-TN.jpg'},
+	{name: 'Salmon Creek', image: 'https://cascadiatents.com/wp-content/uploads/2016/08/CVT-Mt.-Rainier-EV-TN.jpg'},
+	{name: 'Granite Hill', image: 'https://cascadiatents.com/wp-content/uploads/2016/08/CVT-Mt.-Rainier-EV-TN.jpg'},
+	{name: 'Mountain Goat\'s Rest', image: 'https://cascadiatents.com/wp-content/uploads/2016/08/CVT-Mt.-Rainier-EV-TN.jpg'},
+	{name: 'Salmon Creek', image: 'https://cascadiatents.com/wp-content/uploads/2016/08/CVT-Mt.-Rainier-EV-TN.jpg'},
+	{name: 'Granite Hill', image: 'https://cascadiatents.com/wp-content/uploads/2016/08/CVT-Mt.-Rainier-EV-TN.jpg'},
+	{name: 'Mountain Goat\'s Rest', image: 'https://cascadiatents.com/wp-content/uploads/2016/08/CVT-Mt.-Rainier-EV-TN.jpg'}
 ]
 
 app.get('/', function(req, res) {
@@ -26,7 +32,7 @@ app.post('/campgrounds', function(req, res) {
 	var image = req.body.image;
 	var newCampground = {name: name, image: image}
 	campgrounds.push(newCampground);
-	
+
 	// redirect back to campgrounds page
 	res.redirect('/campgrounds');
 
