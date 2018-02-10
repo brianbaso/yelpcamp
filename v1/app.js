@@ -1,9 +1,36 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
+var express 	= require('express'),
+	app 		= express(),
+	bodyParser 	= require('body-parser'),
+	mongoose 	= require('mongoose')
+
+// mongoose step 1. connect
+mongoose.connect('mongodb://localhost/yelp_camp');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
+
+// mongoose step 2. set up the schema
+var campgroundSchema = new mongoose.Schema({
+	name: String,
+	image: String
+});
+
+// mongoose step 3. complile into a model
+var Campground = mongoose.model("Campground", campgroundSchema);
+
+Campground.create(
+	{
+		name: 'Salmon Creek',
+		image: 'https://cascadiatents.com/wp-content/uploads/2016/08/CVT-Mt.-Rainier-EV-TN.jpg'
+
+	}, function(err, campground) {
+		if (err) {
+			console.log(err);	
+		} else {
+			console.log('new camground');
+			console.log(campground);
+		}
+	});
 
 var campgrounds = [
 	{name: 'Salmon Creek', image: 'https://cascadiatents.com/wp-content/uploads/2016/08/CVT-Mt.-Rainier-EV-TN.jpg'},
