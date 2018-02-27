@@ -1,12 +1,14 @@
 /*	RESTful Routes:
-	name			url 			verb		desc.
+	name			url 					verb		desc.
 	________________________________________________________________________
 
-	1. INDEX		/dogs			GET 		display list of dogs
-	2. NEW 			/dogs/new 		GET 		display form to make new dog
- 	3. CREATE 		/dogs			POST 		add a new dog to DB
- 	4. SHOW  		/dogs/:id  		GET 		shows info about one dog
- 	5. 	
+	1. INDEX		/campgrounds			GET 		display list of dogs
+	2. NEW 			/campgrounds/new 		GET 		display form to make new dog
+ 	3. CREATE 		/campgrounds			POST 		add a new dog to DB
+ 	4. SHOW  		/campgrounds/:id  		GET 		shows info about one dog
+ 	
+ 	5. NEW 			campgrounds/:id/comments/new 		GET
+ 	6. CREATE 		campgrounds/:id/comments			POST
 */
 
 var express 	= require('express'),
@@ -36,7 +38,7 @@ app.get('/campgrounds', function(req, res) {
 			console.log(err);
 		} else {
 			// data that we pass through to the webpage
-			res.render('index', {campgrounds: allCampgrounds});
+			res.render('campgrounds/index', {campgrounds: allCampgrounds});
 		}
 	});
 });
@@ -63,7 +65,7 @@ app.post('/campgrounds', function(req, res) {
 
 // NEW route: show form to create new campground
 app.get('/campgrounds/new', function(req, res) {
-	res.render('new');
+	res.render('campgrounds/new');
 });
 
 // SHOW route: shows more info about one campground
@@ -73,10 +75,18 @@ app.get('/campgrounds/:id', function(req, res) {
 		if (err) {
 			console.log(err);
 		} else {
-			res.render('show', {campground: foundCampground});
+			res.render('campgrounds/show', {campground: foundCampground});
 		}
 	});
 });
+
+// ===================
+//  COMMENTS ROUTES
+// ===================
+app.get('/campgrounds/:id/comments/new', function(req, res) {
+	res.render('comments/new');
+});
+
 
 app.listen(3000, function() {
 	console.log('Server started...');
