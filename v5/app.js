@@ -21,13 +21,14 @@ var express 	= require('express'),
 
 
 // mongoose step 1. connect
-// hello there
 mongoose.connect('mongodb://localhost/yelp_camp_v3');
 
 // config body parser
 app.use(bodyParser.urlencoded({extended: true}));
 // make ejs shortcut
 app.set('view engine', 'ejs');
+// add stylesheet
+app.use(express.static(__dirname + "/public"))
 // add some dummy data
 seedDB();
 
